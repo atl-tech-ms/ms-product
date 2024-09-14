@@ -1,6 +1,33 @@
 databaseChangeLog:
   - changeSet:
-      id: 0
-      author: admin
+      id: Create product table
+      author: Elnur Hasanov
       changes:
-        -
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: count
+                  type: integer
+                  constraints:
+                    nullable: false
+
+            remarks: Table to store information about products
+
