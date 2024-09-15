@@ -3,6 +3,7 @@ package az.atl.productms.controller;
 import az.atl.productms.model.request.SaveProductDto;
 import az.atl.productms.model.response.ProductResponseDto;
 import az.atl.productms.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class ProductController {
     }
 
     @PostMapping("reduce/{id}")
-    public ResponseEntity<Void> reduceProductCount(@PathVariable Long id, @RequestParam Integer count) {
+    public ResponseEntity<Void> reduceProductCount(@Valid @PathVariable Long id, @RequestParam Integer count) {
         productService.reduceProductCount(id, count);
         return ResponseEntity.status(NO_CONTENT).build();
     }
