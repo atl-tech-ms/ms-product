@@ -22,13 +22,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> saveProduct(@RequestBody SaveProductDto dto) {
+    public ResponseEntity<Void> saveProduct(@Valid @RequestBody SaveProductDto dto) {
         productService.saveProduct(dto);
         return ResponseEntity.status(CREATED).build();
     }
 
     @PostMapping("reduce/{id}")
-    public ResponseEntity<Void> reduceProductCount(@Valid @PathVariable Long id, @RequestParam Integer count) {
+    public ResponseEntity<Void> reduceProductCount(@PathVariable Long id, @RequestParam Integer count) {
         productService.reduceProductCount(id, count);
         return ResponseEntity.status(NO_CONTENT).build();
     }
