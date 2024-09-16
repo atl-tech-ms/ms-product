@@ -3,13 +3,13 @@ package az.atl.productms.service.serviceImpl;
 import az.atl.productms.dao.entity.ProductEntity;
 import az.atl.productms.dao.repository.ProductRepository;
 import az.atl.productms.exception.NotFoundException;
-import az.atl.productms.mapper.ProductMapper;
 import az.atl.productms.model.request.SaveProductDto;
 import az.atl.productms.model.response.ProductResponseDto;
 import az.atl.productms.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static az.atl.productms.mapper.ProductMapper.PRODUCT_MAPPER;
 import static az.atl.productms.model.enums.ErrorMessage.PRODUCT_NOT_FOUND;
 
 @Service
@@ -19,14 +19,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void saveProduct(SaveProductDto dto) {
-        var entity = ProductMapper.PRODUCT_MAPPER.buildProductEntity(dto);
+        var entity = PRODUCT_MAPPER.buildProductEntity(dto);
         productRepository.save(entity);
     }
 
     @Override
     public ProductResponseDto getResponseById(Long id) {
         var entity = fetchProductIfExist(id);
-        return ProductMapper.PRODUCT_MAPPER.buildProductResponseDto(entity);
+        return PRODUCT_MAPPER.buildProductResponseDto(entity);
     }
 
     @Override

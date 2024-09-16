@@ -1,5 +1,6 @@
 package az.atl.productms.model.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +23,7 @@ public class ExceptionResponse {
     String message;
     String path;
     LocalDateTime timestamp;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     Map<String, String> validationErrors;
 }
